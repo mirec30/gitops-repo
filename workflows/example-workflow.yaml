@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: hello-artifact-
+  namespace: argo
+spec:
+  entrypoint: generate-and-store
+  serviceAccountName: argo
+  templates:
+  - name: generate-and-store
+    container:
+      image: alpine:latest
+      command: [sh, -c]
+      args:
+        - echo "Hello Argo with artifacts!" > /tmp/message.txt
+    outputs:
+      artifacts:
+        - name: message
+          path: /tmp/message.txt
+          s3:
+            key: hello-artifact.txt
+            bucket: argo-artifacts
+            endpoint: minio.argo.svc.cluster.local:9000
+            insecure: true
+            accessKeySecret:
+              name: minio-credentials
+              key: accesskey
+            secretKeySecret:
+              name: minio-credentials
+              key: secretkey
