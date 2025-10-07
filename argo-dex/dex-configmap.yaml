@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dex
+  namespace: argo
+data:
+  config.yaml: |
+    issuer: https://workflows.miroslavlukac.sk/dex
+    storage:
+      type: memory
+    web:
+      http: 0.0.0.0:5556
+    connectors:
+    - type: github
+      id: github
+      name: GitHub
+      config:
+        clientID: <GITHUB_CLIENT_ID>
+        clientSecret: <GITHUB_CLIENT_SECRET>
+        redirectURI: https://workflows.miroslavlukac.sk/dex/callback
+    oauth2:
+      skipApprovalScreen: true
+      responseTypes: ["code", "token", "id_token"]
