@@ -3082,6 +3082,9 @@ spec:
       containers:
       - args:
         - server
+        - --auth-mode=server          # pre jednoduchý login tokenom
+        - --base-href=/               # veľmi dôležité, ak je za Ingress
+        - --secure                    # ak máš HTTPS
         env: []
         image: quay.io/argoproj/argocli:v3.6.3
         name: argo-server
