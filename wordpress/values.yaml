@@ -3,6 +3,23 @@ wordpressPassword: mypassword123
 wordpressEmail: admin@miroslavlukac.sk
 wordpressBlogName: "Miroslavov blog"
 
+image:
+  registry: ghcr.io
+  repository: bitnami/wordpress
+  tag: 6.4.2
+
+mariadb:
+  enabled: true
+  image:
+    registry: ghcr.io
+    repository: bitnami/mariadb
+    tag: 11.4.2
+  auth:
+    rootPassword: rootpass123
+    database: wordpress
+    username: wpuser
+    password: wppass123
+
 service:
   type: ClusterIP
 
@@ -23,22 +40,9 @@ ingress:
         - www.miroslavlukac.sk
       secretName: wordpress-tls
 
-mariadb:
-  image:
-    registry: ghcr.io
-    repository: bitnami/mariadb
-    tag: 11.4.2
-  enabled: true
-  auth:
-    rootPassword: rootpass123
-    database: wordpress
-    username: wpuser
-    password: wppass123
-
 persistence:
   enabled: true
   storageClass: standard
   accessModes:
     - ReadWriteOnce
   size: 5Gi
-
