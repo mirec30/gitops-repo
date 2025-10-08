@@ -1,0 +1,6 @@
+# Chart.yaml
+apiVersion: v2
+name: wordpress-app
+description: Moj vlastny Helm chart pre WordPress a MariaDB
+version: 0.1.0 # Verzia vasho chartu, zacnite s 0.1.0
+appVersion: "1.0" # Volitelne, verzia vasho kodu/aplikacie
