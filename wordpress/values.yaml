@@ -24,6 +24,10 @@ ingress:
       secretName: wordpress-tls
 
 mariadb:
+  image:
+    registry: ghcr.io
+    repository: bitnami/mariadb
+    tag: 11.4.2
   enabled: true
   auth:
     rootPassword: rootpass123
