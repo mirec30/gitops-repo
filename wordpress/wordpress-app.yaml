@@ -6,14 +6,12 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/mirec30/gitops-repo
-    targetRevision: 18.0.2
-    path: wordpress/helm-values
+    repoURL: oci://registry-1.docker.io/bitnamicharts
     chart: wordpress
-    repoURL: https://charts.bitnami.com/bitnami
+    targetRevision: 19.0.0  # alebo najnovšia dostupná verzia
     helm:
       valueFiles:
-        - wordpress.yaml
+        - values.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: wordpress
@@ -21,3 +19,6 @@ spec:
     automated:
       prune: true
       selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+

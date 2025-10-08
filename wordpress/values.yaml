@@ -1,0 +1,40 @@
+wordpressUsername: admin
+wordpressPassword: mypassword123
+wordpressEmail: admin@miroslavlukac.sk
+wordpressBlogName: "Miroslavov blog"
+
+service:
+  type: ClusterIP
+
+ingress:
+  enabled: true
+  ingressClassName: nginx
+  hostname: miroslavlukac.sk
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+  tls: true
+  extraHosts:
+    - name: www.miroslavlukac.sk
+      path: /
+  extraTls:
+    - hosts:
+        - miroslavlukac.sk
+        - www.miroslavlukac.sk
+      secretName: wordpress-tls
+
+mariadb:
+  enabled: true
+  auth:
+    rootPassword: rootpass123
+    database: wordpress
+    username: wpuser
+    password: wppass123
+
+persistence:
+  enabled: true
+  storageClass: standard
+  accessModes:
+    - ReadWriteOnce
+  size: 5Gi
+
