@@ -4,14 +4,14 @@ wordpressEmail: admin@miroslavlukac.sk
 wordpressBlogName: "Miroslavov blog"
 
 image:
-  registry: ghcr.io
+  registry: docker.io
   repository: bitnami/wordpress
   tag: 6.4.2
 
 mariadb:
   enabled: true
   image:
-    registry: ghcr.io
+    registry: docker.io
     repository: bitnami/mariadb
     tag: 11.4.2
   auth:
