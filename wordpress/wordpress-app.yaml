@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://charts.bitnami.com/bitnami
     chart: wordpress
-    targetRevision: 19.0.0  # alebo najnovšia dostupná verzia
+    targetRevision: 19.0.0   # alebo môžeš dať najnovšiu:  ->  "*"
     helm:
       valueFiles:
         - values.yaml
@@ -21,4 +21,3 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
-
