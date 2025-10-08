@@ -1,0 +1,24 @@
+wordpressUsername: admin
+wordpressPassword: supersecurepassword
+wordpressEmail: admin@miroslavlukac.sk
+wordpressBlogName: "Miroslavov Blog"
+
+ingress:
+  enabled: true
+  hostname: miroslavlukac.sk
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+  tls: true
+
+persistence:
+  enabled: true
+  storageClass: "local-path"
+  accessMode: ReadWriteOnce
+  size: 8Gi
+
+mariadb:
+  auth:
+    rootPassword: mysqlrootpassword
+    database: bitnami_wordpress
+    username: bn_wordpress
+    password: wordpresspass
