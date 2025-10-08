@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/mirec30/gitops-repo
-    targetRevision: main
+    targetRevision: 18.0.2
     path: wordpress/helm-values
     chart: wordpress
     repoURL: https://charts.bitnami.com/bitnami
