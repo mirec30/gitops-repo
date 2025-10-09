@@ -55,7 +55,7 @@ spec:
 
         persistence:
           enabled: true
-          storageClass: standard
+          storageClass: local-path
           accessModes:
             - ReadWriteOnce
           size: 5Gi
