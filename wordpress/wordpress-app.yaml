@@ -10,8 +10,55 @@ spec:
     chart: wordpress
     targetRevision: 19.0.0
     helm:
-      valueFiles:
-        - values.yaml
+      values: |
+        wordpressUsername: admin
+        wordpressPassword: mypassword123
+        wordpressEmail: admin@miroslavlukac.sk
+        wordpressBlogName: "Miroslavov blog"
+
+        image:
+          registry: docker.io
+          repository: bitnamilegacy/wordpress
+          tag: 6.0.2-debian-11-r12
+
+        mariadb:
+          enabled: true
+          image:
+            registry: docker.io
+            repository: bitnamilegacy/mariadb
+            tag: latest
+          auth:
+            rootPassword: rootpass123
+            database: wordpress
+            username: wpuser
+            password: wppass123
+
+        service:
+          type: ClusterIP
+
+        ingress:
+          enabled: true
+          ingressClassName: nginx
+          hostname: miroslavlukac.sk
+          annotations:
+            kubernetes.io/ingress.class: nginx
+            cert-manager.io/cluster-issuer: "letsencrypt-prod"
+          tls: true
+          extraHosts:
+            - name: www.miroslavlukac.sk
+              path: /
+          extraTls:
+            - hosts:
+                - miroslavlukac.sk
+                - www.miroslavlukac.sk
+              secretName: wordpress-tls
+
+        persistence:
+          enabled: true
+          storageClass: standard
+          accessModes:
+            - ReadWriteOnce
+          size: 5Gi
   destination:
     server: https://kubernetes.default.svc
     namespace: wordpress
