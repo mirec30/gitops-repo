@@ -47,12 +47,6 @@ spec:
           extraHosts:
             - name: www.miroslavlukac.sk
               path: /
-          extraTls:
-            - hosts:
-                - miroslavlukac.sk
-                - www.miroslavlukac.sk
-              secretName: wordpress-tls
-
         persistence:
           enabled: true
           storageClass: local-path
