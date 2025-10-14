@@ -52,7 +52,7 @@ spec:
               if ($request_uri ~ "^/.well-known/acme-challenge/") {
                 return 404;
               }
-          tls: true
+          tls: false
           extraHosts:
             - name: miroslavlukac.sk
               path: /
