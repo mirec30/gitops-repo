@@ -49,7 +49,7 @@ spec:
             cert-manager.io/cluster-issuer: "letsencrypt-prod"
           tls: true
           extraHosts:
-            - name: www.miroslavlukac.sk
+            - name: miroslavlukac.sk
               path: /
         persistence:
           enabled: true
