@@ -47,9 +47,6 @@ spec:
           annotations:
             cert-manager.io/cluster-issuer: "letsencrypt-prod"
           tls: false
-          extraHosts:
-            - name: miroslavlukac.sk
-              path: /
         persistence:
           enabled: true
           storageClass: local-path
