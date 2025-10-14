@@ -48,6 +48,7 @@ spec:
             kubernetes.io/ingress.class: nginx
             cert-manager.io/cluster-issuer: "letsencrypt-prod"
             nginx.ingress.kubernetes.io/ssl-redirect: "false"
+            cert-manager.io/http01-edit-in-place: "true"
           tls: true
         persistence:
           enabled: true
