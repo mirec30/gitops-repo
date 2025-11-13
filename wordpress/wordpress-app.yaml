@@ -27,6 +27,10 @@ spec:
             registry: docker.io
             repository: bitnamilegacy/mariadb
             tag: latest
+          primary:
+            persistence:
+              annotations:
+                argocd.argoproj.io/sync-options: Prune=false
           auth:
             rootPassword: rootpass123
             database: wordpress
@@ -37,22 +41,23 @@ spec:
           type: ClusterIP
 
         ingress:
-          enabled: true
+          enabled: false
           ingressClassName: nginx
           hostname: miroslavlukac.sk
           annotations:
             kubernetes.io/ingress.class: nginx
             cert-manager.io/cluster-issuer: "letsencrypt-prod"
+            nginx.ingress.kubernetes.io/ssl-redirect: "false"
+            cert-manager.io/http01-edit-in-place: "true"
           tls: true
-          extraHosts:
-            - name: www.miroslavlukac.sk
-              path: /
         persistence:
           enabled: true
           storageClass: local-path
           accessModes:
             - ReadWriteOnce
           size: 5Gi
+          annotations:
+            argocd.argoproj.io/sync-options: Prune=false
   destination:
     server: https://kubernetes.default.svc
     namespace: wordpress
@@ -62,3 +67,4 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
+  
