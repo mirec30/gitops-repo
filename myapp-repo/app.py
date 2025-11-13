@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    version = os.getenv("APP_VERSION", "v1")
+    version = os.getenv("APP_VERSIONS", "v1")
     return f"Hello from Argo Workflow! Version: {version}"
 
 if __name__ == "__main__":
