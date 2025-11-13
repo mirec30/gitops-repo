@@ -1,0 +1,10 @@
+replicaCount: 1
+
+image:
+  repository: docker.io/mirec30/myapp-repo
+  tag: "latest"
+  pullPolicy: Always
+
+service:
+  type: ClusterIP
+  port: 8080
